@@ -1,0 +1,388 @@
+:root {
+  --paper: #f5f6fa;
+  --card: #ffffff;
+  --ink: #1c1b29;
+  --ink-soft: #5a5871;
+  --accent: #ff3d68;
+  --accent-ink: #ffffff;
+  --gold: #ffc857;
+  --line: #dcdee6;
+  --error: #d13b3b;
+  --radius: 18px;
+  --font-display: "Archivo Black", "Inter", sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "Space Mono", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  margin: 0 0 18px;
+}
+
+/* ---------- Registration card ---------- */
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  box-shadow: 0 24px 60px -32px rgba(28, 27, 41, 0.35);
+  border: 1px solid var(--line);
+}
+
+.card--narrow {
+  max-width: 340px;
+}
+
+.card__title {
+  font-size: 24px;
+  line-height: 1.25;
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+
+.card__subtitle {
+  color: var(--ink-soft);
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0 0 24px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.field input {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--ink);
+  padding: 12px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  background: var(--paper);
+}
+
+.field input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.photo-input {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.photo-input__preview,
+.photo-input__placeholder {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1.5px solid var(--line);
+  background: var(--paper);
+}
+
+.photo-input input[type="file"] {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.error {
+  color: var(--error);
+  font-size: 13px;
+  margin: -4px 0 16px;
+}
+
+button[type="submit"],
+button.checkin {
+  width: 100%;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--accent-ink);
+  background: var(--ink);
+  border: none;
+  border-radius: 10px;
+  padding: 14px;
+  cursor: pointer;
+  transition: transform 0.08s ease;
+}
+
+button[type="submit"]:hover:not(:disabled) {
+  background: var(--accent);
+}
+
+button[type="submit"]:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* ---------- Ticket / confirmation ---------- */
+
+.ticket {
+  display: flex;
+  width: 100%;
+  max-width: 420px;
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 60px -32px rgba(28, 27, 41, 0.35);
+  overflow: hidden;
+  animation: rise 0.5s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticket {
+    animation: none;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ticket__main {
+  flex: 1;
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.ticket__eyebrow {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 13px;
+  margin: 0 0 4px;
+}
+
+.ticket__name {
+  font-size: 26px;
+  margin: 0 0 2px;
+}
+
+.ticket__class {
+  color: var(--ink-soft);
+  font-size: 14px;
+  margin: 0 0 16px;
+}
+
+.ticket__photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--gold);
+  margin-bottom: 16px;
+}
+
+.ticket__note {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.ticket__stub {
+  width: 88px;
+  flex-shrink: 0;
+  background: var(--ink);
+  color: var(--accent-ink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  border-left: 2px dashed rgba(255, 255, 255, 0.25);
+}
+
+.ticket__stub::before,
+.ticket__stub::after {
+  content: "";
+  position: absolute;
+  left: -9px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--paper);
+}
+
+.ticket__stub::before {
+  top: -9px;
+}
+
+.ticket__stub::after {
+  bottom: -9px;
+}
+
+.ticket__stub-label {
+  font-size: 10px;
+  text-transform: lowercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.ticket__code {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  letter-spacing: 0.05em;
+}
+
+/* ---------- Admin / door check-in ---------- */
+
+.page--admin {
+  align-items: flex-start;
+}
+
+.admin {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.admin__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.admin__stats {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.admin__search {
+  width: 100%;
+  font-size: 16px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1.5px solid var(--line);
+  margin-bottom: 16px;
+  background: var(--card);
+}
+
+.admin__search:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.guest-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.guest-list__empty {
+  color: var(--ink-soft);
+  font-size: 14px;
+  text-align: center;
+  padding: 24px 0;
+}
+
+.guest-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+.guest-row__photo {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.guest-row__info {
+  flex: 1;
+  min-width: 0;
+}
+
+.guest-row__name {
+  margin: 0;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.guest-row__meta {
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+button.checkin {
+  width: auto;
+  font-size: 13px;
+  padding: 10px 14px;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1.5px solid var(--line);
+}
+
+button.checkin--done {
+  background: var(--ink);
+  color: var(--accent-ink);
+  border-color: var(--ink);
+}
